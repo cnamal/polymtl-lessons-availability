@@ -34,7 +34,7 @@ jQuery( document ).ready(function( $ ) {
                 if(lessons[sigle]){
                     if(lessons[sigle].data){
 						/* data has already been retrieved */
-                        $(this).append('<th>'+lessons[sigle].data+'</th>');
+                        $(this).append('<td>'+lessons[sigle].data+'</td>');
                     }else{
 						/* we wait till de data has been retrieved */
                         if(!lessons[sigle].wait){
@@ -62,12 +62,12 @@ jQuery( document ).ready(function( $ ) {
                                 data+=$(td[i]).text().charAt(0);
                             }
                             lessons[sigle].data=data;
-                            $(this).append('<th>'+lessons[sigle].data+'</th>');
+                            $(this).append('<td>'+lessons[sigle].data+'</td>');
                             $('a[name="'+sigle+'"]').parent().append(" "+data);
                             if(lessons[sigle].wait){
                                 for(i=0; i<lessons[sigle].wait.length;i++){
-                                    var tr = lessons[sigle].wait.pop();
-                                    $(tr).append('<th>'+lessons[sigle].data+'</th>');
+                                    tr = lessons[sigle].wait.pop();
+                                    $(tr).append('<td>'+lessons[sigle].data+'</td>');
                                 }
                             }
                         }.bind(this)
