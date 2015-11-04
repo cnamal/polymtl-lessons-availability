@@ -28,7 +28,7 @@ jQuery( document ).ready(function( $ ) {
     tables.each(function(){
         $(this).find('tr').each(function(index){
             if(!index)
-                $(this).append('<th>AHE</th>'); 
+                $(this).append('<td>AHE</td>'); 
             else{
                 var sigle =$(this).find('a').attr('href').slice(1);
                 if(lessons[sigle]){
@@ -61,9 +61,11 @@ jQuery( document ).ready(function( $ ) {
                             for (var i=0;i<3;i++){
                                 data+=$(td[i]).text().charAt(0);
                             }
+
                             lessons[sigle].data=data;
                             $(this).append('<td>'+lessons[sigle].data+'</td>');
                             $('a[name="'+sigle+'"]').parent().append(" "+data);
+
                             if(lessons[sigle].wait){
                                 for(i=0; i<lessons[sigle].wait.length;i++){
                                     tr = lessons[sigle].wait.pop();
