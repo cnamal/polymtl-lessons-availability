@@ -28,7 +28,7 @@ jQuery( document ).ready(function( $ ) {
     tables.each(function(){
         $(this).find('tr').each(function(index){
             if(!index)
-                $(this).append('<td>AHE</td>'); 
+                $(this).append('<th>AHE</th>'); 
             else{
                 var sigle =$(this).find('a').attr('href').slice(1);
                 if(lessons[sigle]){
