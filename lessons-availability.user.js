@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         lessons-availability
 // @namespace    http://namal.ovh
-// @version      1.0
+// @version      1.0.1
 // @description  Adds availabilities of every lesson.
 // @author       Namal
 // @match        http://www.polymtl.ca/etudes/cs/*/maitrise.php
@@ -13,6 +13,9 @@
 **/
 jQuery( document ).ready(function( $ ) {
 
+	function dataToString(data){
+		return '<td>'+data+'</td>';
+	}
     var tables = $('table'); /* get all tables */
 
 	/* filter tables about programm structure */
@@ -25,6 +28,7 @@ jQuery( document ).ready(function( $ ) {
 
     var lessons={};
 
+	
     tables.each(function(){
         $(this).find('tr').each(function(index){
             if(!index)
@@ -34,7 +38,7 @@ jQuery( document ).ready(function( $ ) {
                 if(lessons[sigle]){
                     if(lessons[sigle].data){
 						/* data has already been retrieved */
-                        $(this).append('<td>'+lessons[sigle].data+'</td>');
+                        $(this).append(dataToString(lessons[sigle].data));
                     }else{
 						/* we wait till de data has been retrieved */
                         if(!lessons[sigle].wait){
@@ -63,13 +67,13 @@ jQuery( document ).ready(function( $ ) {
                             }
 
                             lessons[sigle].data=data;
-                            $(this).append('<td>'+lessons[sigle].data+'</td>');
+                            $(this).append(dataToString(lessons[sigle].data));
                             $('a[name="'+sigle+'"]').parent().append(" "+data);
 
                             if(lessons[sigle].wait){
                                 for(i=0; i<lessons[sigle].wait.length;i++){
                                     tr = lessons[sigle].wait.pop();
-                                    $(tr).append('<td>'+lessons[sigle].data+'</td>');
+                                    $(tr).append(dataToString(lessons[sigle].data));
                                 }
                             }
                         }.bind(this)
